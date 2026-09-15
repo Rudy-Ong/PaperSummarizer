@@ -1,0 +1,11 @@
+services:
+  summarizer:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports: ["8888:8888"]
+    volumes:
+      - ../papers:/app/papers          # input/ and reports/ shared with the host
+    env_file: ../.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"   # Linux; Docker Desktop (Mac/Win) has it built in
